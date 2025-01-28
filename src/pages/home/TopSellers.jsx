@@ -1,27 +1,29 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Card from '../books/Card.jsx';
+import { useState } from 'react';
+import { useFetchAllBooksQuery } from '../../redux/features/books/booksApi.js';
 
 
 const categories = ["Choose a genre", "Business", "Fiction", "Horror", "Adventure"]
 
 const TopSellers = () => {
 const [selectedCategory,setSelectedCategory]=useState("Choose a Genre");
-  const [books,setBooks] = useState([]);
+  // const [books,setBooks] = useState([]);
 
-  useEffect(()=>{
-    fetch('/books.json')
-    .then(res=> res.json())
-    .then((data)=>setBooks(data))
-  },[])
+  // useEffect(()=>{
+  //   fetch('/books.json')
+  //   .then(res=> res.json())
+  //   .then((data)=>setBooks(data))
+  // },[]);
 
-// const [selectedCategory,setSelectedCategory]=useState("Choose a genre");
-// const {data:books=[]}=useFetchAllBooksQuery();
+
+const {data:books=[]}=useFetchAllBooksQuery();
   const booksFiltering = selectedCategory==="Choose a genre" ? books : books.filter(book=>book.category===selectedCategory.toLowerCase());
   return (
 

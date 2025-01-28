@@ -6,6 +6,8 @@ import { IoSearchOutline } from "react-icons/io5"
 import { Link } from "react-router-dom"
 import avatarImg from "../assets/avatar.png"
 import { useState } from "react"
+import { useSelector } from "react-redux"
+import { useAuth } from "../context/AuthContext"
 
 
 //navigation
@@ -19,11 +21,13 @@ const navigation = [
 
 const Navbar = () => {
   const [isDropDownOpen,setIsDropdownOpen] = useState(false)
+  const cartItems = useSelector(state => state.cart.cartItems);
 
-const currentUser = false;
+const {currentUser,logout} = useAuth();
+
 
   const handleLogOut = ()=>{
-    // logout()
+    logout()
   }
 
   const token = localStorage.getItem('token');
@@ -95,7 +99,10 @@ const currentUser = false;
                {/* shopping cart */}
                <Link to="/cart" className="bg-pink-400 p-1 sm:px-6 flex items-center rounded-sm">
                <HiOutlineShoppingCart className=""/>
-               <span className="text-sm font-semibold sm-ml-1">0</span>
+               {
+                cartItems.length > 0 ? <span className="text-sm font-semibold sm:ml-1">{cartItems.length}</span> : <span className="text-sm font-semibold sm:ml-1">0</span>
+               }
+               {/* <span className="text-sm font-semibold sm-ml-1">0</span> */}
                </Link>
             </div>
         </nav>

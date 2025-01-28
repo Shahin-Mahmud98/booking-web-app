@@ -10,14 +10,20 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import Card from '../books/Card';
 import { useEffect, useState } from 'react';
+import { useFetchAllBooksQuery } from '../../redux/features/books/booksApi';
 
 const MostBooked = () => {
-    const [books,setBooks] = useState([]);
- useEffect(()=>{
-    fetch('/books.json')
-    .then(res=> res.json())
-    .then((data)=>setBooks(data))
-  },[])
+    // const [books,setBooks] = useState([]);
+//  useEffect(()=>{
+//     fetch('/books.json')
+//     .then(res=> res.json())
+//     .then((data)=>setBooks(data))
+//   },[])
+
+const {data:books=[]}=useFetchAllBooksQuery();
+
+
+
   return (
     <div className="py-16"> 
         <h2 className="text-3xl font-semibold mb-6">Most books sells in Bangladesh in the past month
