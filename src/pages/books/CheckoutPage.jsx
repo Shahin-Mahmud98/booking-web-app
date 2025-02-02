@@ -4,8 +4,9 @@ import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useCreateOrderMutation } from "../../redux/features/cart/ordersApi";
+
 import { useAuth } from "../../context/AuthContext";
+import { useCreateOrderMutation  } from "../../redux/features/orders/ordersApi";
 
 const CheckoutPage = () => {
     const cartItems = useSelector(state => state.cart.cartItems);
@@ -25,7 +26,7 @@ const navigate = useNavigate();
 
 const [isChecked,setIsChecked] = useState(false);
 const onSubmit = async (data)=>{
-    console.log(data)
+    // console.log(data)
     const newOrder = {
         name:data.name,
         email:currentUser?.email,
@@ -39,7 +40,7 @@ const onSubmit = async (data)=>{
         productsId:cartItems.map(item => item?._id),
         totalPrice:totalPrice,
     }
-    console.log(newOrder);
+    // console.log(newOrder);
     try{
         await createOrder(newOrder).unwrap();
         Swal.fire({

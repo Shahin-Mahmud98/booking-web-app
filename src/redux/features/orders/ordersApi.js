@@ -9,8 +9,8 @@ const ordersApi = createApi({
     }),
 
     tagTypes:['Orders'],
-    endPoints:(builder)=>({
-        createOrder:(builder.mutatiion)({
+    endpoints:(builder)=>({
+        createOrder:(builder.mutation)({
             query:(newOrder)=>({
                 url:"/",
                 method:"POST",
@@ -28,5 +28,5 @@ const ordersApi = createApi({
 
 })
 
-export const {useCreateOrderMutation,useGetOrderByEmailQuery}=ordersApi;
+export const {useCreateOrderMutation ,useGetOrderByEmailQuery} = ordersApi;
 export default ordersApi;
