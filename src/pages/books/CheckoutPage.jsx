@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { useSelector } from "react-redux"
@@ -6,9 +6,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import { useAuth } from "../../context/AuthContext";
-import { useCreateOrderMutation  } from "../../redux/features/orders/ordersApi";
+import { useCreateOrderMutation } from "../../redux/features/orders/ordersApi";
+
 
 const CheckoutPage = () => {
+    
     const cartItems = useSelector(state => state.cart.cartItems);
     const totalPrice = cartItems.reduce((acc , item ) => acc+item.newPrice, 0).toFixed(2);
     const {currentUser} = useAuth()
@@ -18,9 +20,15 @@ const CheckoutPage = () => {
         handleSubmit,
         watch,
         formState:{errors},
-}=useForm();
+ }=useForm();
 
-const [createOrder, {isLoading,error}]= useCreateOrderMutation();
+ const [createOrder, { isLoading, error }] = useCreateOrderMutation();
+
+ useEffect(() => {
+     if (error) {
+         console.error("Order Creation Error:", error);
+     }
+ }, [error]);
 
 const navigate = useNavigate();
 
@@ -37,7 +45,7 @@ const onSubmit = async (data)=>{
             zipcode:data.zipcode
         },
         phone:data.phone,
-        productsId:cartItems.map(item => item?._id),
+        productIds:cartItems.map(item => item?._id),
         totalPrice:totalPrice,
     }
     // console.log(newOrder);
@@ -47,7 +55,7 @@ const onSubmit = async (data)=>{
             title:"Confirmed Order",
            text:"Your place order successfully",
            icon:"warning",
-           showCancelButton:trie,
+           showCancelButton:true,
            confirmButtonColor:"#3085d6",
            cancelButtonColor:"#d33",
            confirmButtonText:"Yes, It's Okay" 
@@ -56,6 +64,7 @@ const onSubmit = async (data)=>{
     }catch(error){
         console.error("Error place an order", error);
         alert("Failed to place an Order")
+
     }
 } 
 
@@ -112,7 +121,10 @@ if(isLoading)
                                         <label htmlFor="address">Address / Street</label>
                                         <input
                                             {...register("address", { required: true })}
-                                            type="text" name="address" id="address" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" />
+                                            type="text" name="address" id="
+                                            
+                                            
+                                            " className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" />
                                     </div>
 
                                     <div className="md:col-span-2">
@@ -201,3 +213,6 @@ if(isLoading)
 }
 
 export default CheckoutPage
+
+
+//chatgpt

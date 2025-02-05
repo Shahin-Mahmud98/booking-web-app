@@ -1,19 +1,20 @@
-const Order = require("./order.model")
+const Order = require("./order.model");
 
-const createOrder = async (req,res)=>{
+const createOrder = async(req,res)=>{
+    // console.error(error);
     try {
         const newOrder = await Order(req.body);
-        const saveNewOrder = await newOrder.save();
-        res.status(200).json(saveNewOrder);
+        const saveOrder = await newOrder.save();
+        res.status(200).json(saveOrder);
     } catch (error) {
-        console.error("Error creating order");
+        console.error("Error creating order",error);
         res.status(500).json({message:"Failed to create order"});
 
     }
 
 };
 
-const getOrderByEmail = async (req,res)=>{
+const getOrderByEmail = async(req,res)=>{
     try {
         const{email}=req.params;
         const orders = await Order.find({email}).sort({createdAt:-1});

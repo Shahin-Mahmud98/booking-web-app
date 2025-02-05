@@ -9,7 +9,7 @@ const orderSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    adress:{
+    address:{
         city:{
             type:String,
         required:true,
@@ -22,7 +22,7 @@ const orderSchema = new mongoose.Schema({
         type:Number,
         required:true,
     },
-    productsIds:[{
+    productIds:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Book',
         required:true,
