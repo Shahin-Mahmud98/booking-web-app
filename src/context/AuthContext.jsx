@@ -4,6 +4,7 @@ import { auth } from "../firebase/firebase.config"; // Import the shared `auth` 
 
 const AuthContext = createContext();
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
   return useContext(AuthContext);
 };
