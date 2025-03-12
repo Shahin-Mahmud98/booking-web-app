@@ -13,7 +13,7 @@ import AdminLogin from "../components/AdminLogin";
 // import Dashboard from "../pages/dashboard/Dashboard";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import Dashboard from "../pages/dashboard/Dashboard";
-import AddBook from "../pages/dashboard/addbook/Addbook";
+import AddBook from "../pages/dashboard/addbook/Addbook.jsx";
 import ManageRoomBooking from "../pages/dashboard/managebookroom/ManageRoomBooking";
 import UpdateBookingRoom from "../pages/dashboard/editroom/UpdateBookingRoom";
 import UserDashboard from "../pages/dashboard/users/UserDashboard";
