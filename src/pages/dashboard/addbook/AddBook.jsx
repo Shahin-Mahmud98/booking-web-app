@@ -126,11 +126,11 @@ const AddBook = () => {
         {/* Submit Button */}
         <button type="submit" className="w-full py-2 bg-green-500 text-white font-bold rounded-md">
          {
-<<<<<<< HEAD
+
             isLoading ? <span className="">Adding.. </span> : <span>Add Here</span>
-=======
-            isLoading ? <span className="">Adding.. </span> : <span>Add Book</span>
->>>>>>> eae1fab2ae13943b19118fc16b43771dc29696b6
+
+            // isLoading ? <span className="">Adding.. </span> : <span>Add Book</span>
+
           }
         </button>
       </form>
