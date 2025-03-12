@@ -202,7 +202,7 @@ function elementIsChildOfSlot(el, slot) {
     if (el === elementToCheck) {
       return true;
     }
-    elementsQueue.push(...elementToCheck.children, ...(elementToCheck.shadowRoot?.children || []), ...(elementToCheck.assignedElements?.() || []));
+    elementsQueue.push(...elementToCheck.children, ...(elementToCheck.shadowRoot ? elementToCheck.shadowRoot.children : []), ...(elementToCheck.assignedElements ? elementToCheck.assignedElements() : []));
   }
 }
 function elementIsChildOf(el, parent) {
