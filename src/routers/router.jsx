@@ -13,7 +13,11 @@ import AdminLogin from "../components/AdminLogin";
 // import Dashboard from "../pages/dashboard/Dashboard";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import Dashboard from "../pages/dashboard/Dashboard";
+<<<<<<< HEAD
 import AddBook from "../pages/dashboard/addbook/Addbook.jxs";
+=======
+import AddBook from "../pages/dashboard/addbook/Addbook";
+>>>>>>> eae1fab2ae13943b19118fc16b43771dc29696b6
 import ManageRoomBooking from "../pages/dashboard/managebookroom/ManageRoomBooking";
 import UpdateBookingRoom from "../pages/dashboard/editroom/UpdateBookingRoom";
 import UserDashboard from "../pages/dashboard/users/UserDashboard";
