@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { useFetchAllBooksQuery } from '../../redux/features/books/booksApi.js';
 
 
-const categories = ["Choose a genre", "Business", "Fiction", "Horror", "Adventure"]
+const categories = ["Choose a genre", "Business Class", "Econome", "Hummt", "Adventure"]
 
 const TopSellers = () => {
 const [selectedCategory,setSelectedCategory]=useState("Choose a Genre");
@@ -28,7 +28,7 @@ const {data:books=[]}=useFetchAllBooksQuery();
   return (
 
     <div className='py-10'>
-      <h2 className='text-3xl font-semibold mb-6'>Top sellers</h2>
+      <h2 className='text-3xl font-semibold mb-6'>Top booking room</h2>
       {/* category filtering */}
       <div>
         <select onChange={(e)=>setSelectedCategory(e.target.value)}

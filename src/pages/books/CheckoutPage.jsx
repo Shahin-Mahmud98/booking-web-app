@@ -14,8 +14,8 @@ const CheckoutPage = () => {
     const cartItems = useSelector(state => state.cart.cartItems);
     const totalPrice = cartItems.reduce((acc , item ) => acc+item.newPrice, 0).toFixed(2);
     const {currentUser} = useAuth();
-    const {id}=useParams();
-    const navigate=useNavigate();
+    // const {id}=useParams();
+    
 
     const{
         register,
@@ -26,20 +26,23 @@ const CheckoutPage = () => {
 
 
  const [createOrder, { isLoading, error }] = useCreateOrderMutation();
+ const navigate=useNavigate();
+
  const [isChecked,setIsChecked] = useState(false);
- useEffect(() => {
-     if (error) {
-         console.error("Order Creation Error:", error);
-     }
- }, [error]);
+
+//  useEffect(() => {
+//      if (error) {
+//          console.error("Order Creation Error:", error);
+//      }
+//  }, [error]);
 
 
 
  const onSubmit = async (data) => {
-    if (!isChecked) {
-        Swal.fire('Error', 'Please agree to the terms and conditions.', 'error');
-        return;
-    }
+    // if (!isChecked) {
+    //     Swal.fire('Error', 'Please agree to the terms and conditions.', 'error');
+    //     return;
+    // }
 
     const newOrder = {
         name: data.name,
@@ -55,77 +58,96 @@ const CheckoutPage = () => {
         totalPrice: totalPrice,
     };
 
-    try {
-        // ✅ Step 1: Create the order in your database
+    // try {
+    //     // ✅ Step 1: Create the order in your database
+    //     await createOrder(newOrder).unwrap();
+
+console.log(newOrder);
+    try{
         await createOrder(newOrder).unwrap();
-
-        // ✅ Step 2: Initiate payment gateway
-        const paymentData = {
-            productId: id,
-            totalPrice: totalPrice,
-            customerInfo: {
-                name: data.name,
-                email: currentUser?.email,
-                address: {
-                    city: data.city,
-                    state: data.state,
-                    zipcode: data.zipcode,
-                    country: data.country,
-                },
-                phone: data.phone,
-            },
-        };
-    //     console.log(paymentData)
-    //     paymentData.productId=id;
-    // fetch("http://localhost:5000/order",{
-    //     method:"POST",
-    //     headers:{"content-type":"application/json"},
-    //     body:JSON.stringify(paymentData),
-
-    // })
-    // .then((res)=>res.json())
-    // .then((result)=>{
-    //     window.location.replace(result.url);
-    //     console.log(result);
-    // })
-
-        const response = await fetch('http://localhost:5000/order', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(paymentData),
+        Swal.fire({
+            title:"Confirmed Order",
+           text:"Your place order successfully",
+           icon:"warning",
+           showCancelButton:true,
+           confirmButtonColor:"#3085d6",
+           cancelButtonColor:"#d33",
+           confirmButtonText:"Yes, It's Okay" 
         });
+        navigate("/orders")
+    }catch(error){
+        console.error("Error place an order", error);
+        alert("Failed to place an Order")
 
-        console.log('Response:', response);
-
-        // ✅ রেসপন্স সঠিক কিনা চেক করা (JSON পার্স করার আগে)
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
-        }
-
-        // ✅ JSON ডেটা পার্স করা
-        const result = await response.json();
-        // console.log('Parsed Result:', result);
-
-        // ✅ পেমেন্ট গেটওয়েতে রিডাইরেক্ট
-        if (result.url) {
-            window.location.href = result.url;
-        } else {
-            Swal.fire('Error', 'Failed to initiate payment.', 'error');
-        }
-    } catch (error) {
-        console.error('Error placing an order:', error);
-        Swal.fire('Error', `Failed to place the order. ${error.message}`, 'error');
     }
-};
+} 
 
 
 
-// const onSubmit = (data) =>{
-    
-//  }
-//create order
+//         // ✅ Step 2: Initiate payment gateway
+//         // const paymentData = {
+//         //     productId: id,
+//         //     totalPrice: totalPrice,
+//         //     customerInfo: {
+//         //         name: data.name,
+//         //         email: currentUser?.email,
+//         //         address: {
+//         //             city: data.city,
+//         //             state: data.state,
+//         //             zipcode: data.zipcode,
+//         //             country: data.country,
+//         //         },
+//         //         phone: data.phone,
+//         //     },
+//         // };
+//     //     console.log(paymentData)
+//     //     paymentData.productId=id;
+//     // fetch("http://localhost:5000/order",{
+//     //     method:"POST",
+//     //     headers:{"content-type":"application/json"},
+//     //     body:JSON.stringify(paymentData),
+
+//     // })
+//     // .then((res)=>res.json())
+//     // .then((result)=>{
+//     //     window.location.replace(result.url);
+//     //     console.log(result);
+//     // })
+
+//         const response = await fetch('http://localhost:5000/order', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify(paymentData),
+//         });
+
+//         console.log('Response:', response);
+
+//         // ✅ রেসপন্স সঠিক কিনা চেক করা (JSON পার্স করার আগে)
+//         if (!response.ok) {
+//             throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
+//         }
+
+//         // ✅ JSON ডেটা পার্স করা
+//         const result = await response.json();
+//         // console.log('Parsed Result:', result);
+
+//         // ✅ পেমেন্ট গেটওয়েতে রিডাইরেক্ট
+//         if (result.url) {
+//             window.location.href = result.url;
+//         } else {
+//             Swal.fire('Error', 'Failed to initiate payment.', 'error');
+//         }
+//     } catch (error) {
+//         console.error('Error placing an order:', error);
+//         Swal.fire('Error', `Failed to place the order. ${error.message}`, 'error');
+//     }
+// };
+
+
+
+
 
 
 

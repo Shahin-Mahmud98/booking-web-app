@@ -30,7 +30,7 @@ const Card = ({book}) => {
             <button onClick={()=>handleAddToCart(book)}
              className="bg-orange-400 rounded-lg py-2 px-6 space-x-1 flex items-center gap-1">
               <FiShoppingCart className=""/>
-              <span>Add to Cart</span>
+              <span>Book Now</span>
             </button>
         </div>
       </div>

@@ -1,8 +1,11 @@
 // import { Swiper } from "swiper/types"
-import news1 from "../../assets/news/news-1.png"
+// import news1 from "../../assets/news/news-1.png"
 import news2 from "../../assets/news/news-2.png"
 import news3 from "../../assets/news/news-3.png"
 import news4 from "../../assets/news/news-4.png"
+import b1 from "../../assets/news/b1.jpg"
+
+
 // import { SwiperSlide } from "swiper/react"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from "react-router-dom"
@@ -18,7 +21,7 @@ const news = [
         "id": 1,
         "title": "Global Climate Summit Calls for Urgent Action",
         "description": "World leaders gather at the Global Climate Summit to discuss urgent strategies to combat climate change, focusing on reducing carbon emissions and fostering renewable energy solutions.",
-        "image": news1
+        "image": b1
     },
     {
         "id": 2,
@@ -49,7 +52,7 @@ const BestClient = () => {
   return (
 
     <div className='py-16'>
-        <h2 className='text-3xl font-semibold mb-6'>News </h2>
+        <h2 className='text-3xl font-semibold mb-6'>Our Satisfied Client</h2>
 
         <Swiper
         slidesPerView={1}
@@ -86,7 +89,9 @@ const BestClient = () => {
 
                     </div>
                     <div className="flex-shrink-0">
-                        <img src={item.image} alt="" className="w-full object-cover" />
+                    <img src={item.image} alt="" className="w-[200px] h-[150px] " />
+
+
                     </div>
                 </div>
             </SwiperSlide>

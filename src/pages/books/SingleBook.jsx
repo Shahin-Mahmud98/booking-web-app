@@ -44,7 +44,7 @@ const SingleBook = () => {
 
         <button onClick={() => handleAddToCart(book)} className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% ... px-6 py-2 rounded-lg space-x-1 flex items-center gap-1 ">
             <FiShoppingCart className="" />
-            <span>Add to Cart</span>
+            <span>Book Now</span>
 
         </button>
     </div>
