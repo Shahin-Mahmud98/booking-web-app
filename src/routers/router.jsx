@@ -8,7 +8,7 @@ import CheckoutPage from "../pages/books/CheckoutPage";
 import OrderPage from "../pages/books/OrderPage";
 import SingleBook from "../pages/books/SingleBook";
 import PrivateRoute from "./PrivateRoute";
-import AdminRoute from "./AdminRoute";  // Assuming you have this component
+import adminRoute from "./adminRoute";  // Assuming you have this component
 import AdminLogin from "../components/AdminLogin";
 // import Dashboard from "../pages/dashboard/Dashboard";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
@@ -77,37 +77,37 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      <AdminRoute>
+      <adminRoute>
         <DashboardLayout />
-      </AdminRoute>
+      </adminRoute>
     ),
     children: [
       {
         path: "",
         element: (
-          <AdminRoute>
+          <adminRoute>
             <Dashboard />
             
-          </AdminRoute>
+          </adminRoute>
         ),
       },
       {
         path: "add-new-book",
-        element:<AdminRoute>
+        element:<adminRoute>
           <AddBook/>
-        </AdminRoute>
+        </adminRoute>
       },
       {
         path: "edit-book/:id",
-        element: <AdminRoute>
+        element: <adminRoute>
           <UpdateBookingRoom/>
-        </AdminRoute>,
+        </adminRoute>,
       },
       {
         path: "manage-books",
-        element: <AdminRoute>
+        element: <adminRoute>
           <ManageRoomBooking/>
-        </AdminRoute>
+        </adminRoute>
       },
     ],
   },
