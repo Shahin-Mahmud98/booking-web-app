@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors')
 // const SSLCommerzPayment = require('sslcommerz-lts')
+const path = require('path');
 
 const port = process.env.PORT || 5000;
 
@@ -15,6 +16,12 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }))
+
+
+// স্ট্যাটিক ফাইল সার্ভ করা
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 
 // routes
@@ -87,6 +94,11 @@ app.use("/",(req,res)=>{
   main().then(()=>console.log("Mongodb Connected successfully"))
   .catch((err)=> console.log(err));
   
+
+
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  });
 
 
 app.listen(port,()=>{
