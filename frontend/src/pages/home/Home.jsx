@@ -1,8 +1,9 @@
 // import Swipper from "../books/swipper"
 // import Banner from "./Banner"
-import PaymentCancel from "../payment/PaymentCancel"
-import PaymentFail from "../payment/PaymentFail"
-import PaymentSuccess from "../payment/PaymentSuccess"
+
+// import PaymentCancel from "../payment/PaymentCancel"
+// import PaymentFail from "../payment/PaymentFail"
+// import PaymentSuccess from "../payment/PaymentSuccess"
 import BestClient from "./BestClient"
 import Carusel from "./Carusel"
 import MostBooked from "./MostBooked"
